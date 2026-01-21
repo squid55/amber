@@ -22,6 +22,7 @@ The current version implements a basic addition unit within the register bank to
 * **i_pim_opcode [2:0]:** 3-bit operation code.
 * `3'b001`: Addition ()
 
+<img width="943" height="400" alt="image" src="https://github.com/user-attachments/assets/45cccb48-d316-4c7b-8b69-dbb285fb259b" />
 
 
 ### Data Path Logic
@@ -37,7 +38,6 @@ The logic was verified using the Vivado Simulator to ensure the hardware accurat
 * **Test Case:** Preloading  with a base value and adding a secondary input via the PIM opcode.
 * **Observation:** The register value updates immediately on the next clock edge following the `i_pim_en` pulse.
 
-<img width="1067" height="453" alt="image" src="https://github.com/user-attachments/assets/0536a33b-58b3-4ca1-9ef9-da821419f2b9" />
-<img width="1067" height="453" alt="image" src="https://github.com/user-attachments/assets/393cd892-a73f-4ef8-a1f7-7101e14fe3c2" />
-<img width="1067" height="453" alt="image" src="https://github.com/user-attachments/assets/5f2bbaff-6336-40e1-845a-416f59a8e4b4" />
+<img width="948" height="665" alt="image" src="https://github.com/user-attachments/assets/a9ac5316-b554-4208-889a-673c3164cfaa" />
+
 
