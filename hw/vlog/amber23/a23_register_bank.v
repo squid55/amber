@@ -64,6 +64,9 @@ input       [14:0]          i_reg_bank_wen,
 input       [23:0]          i_pc,                   // program counter [25:2]
 input       [31:0]          i_reg,
 
+input                       i_pim_en,      //MOD_260121 PIM activation siganl
+input        [2:0]          i_pim_opcode,  //MOD_260121 PIM opcode (3'b001: ADD)
+
 input       [3:0]           i_status_bits_flags,
 input                       i_status_bits_irq_mask,
 input                       i_status_bits_firq_mask,
@@ -173,7 +176,15 @@ assign firq_exec = i_mode_exec == FIRQ;
 always @ ( posedge i_clk )
     if (!i_fetch_stall)
         begin
-        r0       <=  i_reg_bank_wen[0 ]              ? i_reg : r0;  
+            //MOD_260121 --- PIM Custom Logic Start ---
+        if (i_pim_en && i_pim_opcode == 3'b001) begin
+            r0 <= r0 + r1; // R0 = R0 + R1 do it in register
+        end
+        else begin
+            r0  <=  i_reg_bank_wen[0 ]  ? i_reg : r0; // MOD_260121
+        end
+        // --- PIM Custom Logic End ---
+      //  r0       <=  i_reg_bank_wen[0 ]              ? i_reg : r0; // MOD_260121
         r1       <=  i_reg_bank_wen[1 ]              ? i_reg : r1;  
         r2       <=  i_reg_bank_wen[2 ]              ? i_reg : r2;  
         r3       <=  i_reg_bank_wen[3 ]              ? i_reg : r3;  
